@@ -1,0 +1,22 @@
+﻿@model  textfind.Models.findtext
+
+@{
+    ViewBag.Title = "result";
+}
+
+<h2>result</h2>
+
+<div style="position:fixed; display:flex; flex-direction:row; flex-wrap:wrap; background-color:aliceblue; margin:10px; z-index:20;">
+    @if (Model.bookmarks.Count > 0)
+    {
+        foreach (KeyValuePair<int, int> a in Model.bookmarks)
+        {
+            <a href="@("#" + a.Key +  "linenumber")" style="margin:10px;">@a.Key</a>
+        }
+    }
+
+               
+</div>
+<div style="position:relative; top:50px; z-index:10">
+    @Html.Raw(@Model.txt)
+</div>

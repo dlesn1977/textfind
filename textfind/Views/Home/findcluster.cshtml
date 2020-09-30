@@ -1,0 +1,24 @@
+﻿@model textfind.Models.onefindcluster
+<div style="display:flex; flex-direction:row; justify-content:center;">
+    <label>Name</label>
+    <input type="text" style="margin: 0 10px 0 10px" value="@Model.fldname"/>
+    <button>Save Name</button>
+</div>
+<div style="display:flex;  flex-direction:column;  ">
+    @foreach (KeyValuePair<int, textfind.Models.onefind> a in Model.allfnds)
+    {
+    <div style="display: flex;
+        flex-direction: row;
+        justify-content: flex-start;
+        align-items: center;">
+        @Html.Partial("onefind", a.Value)
+    </div>
+    }
+
+</div>
+
+
+<script>
+
+
+</script>

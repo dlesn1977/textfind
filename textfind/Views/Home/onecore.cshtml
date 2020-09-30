@@ -1,0 +1,92 @@
+﻿@model textfind.Models.coreprocess
+@using textfind.Models
+
+<style>
+    .bx {
+        border: solid thin blue;
+        margin:10px;
+    }
+</style>
+<h2>Core Screen</h2>
+
+<div style="display:flex; flex-direction:row; justify-content:flex-start;">
+    <div id="leftdiv">
+        <div style="display:flex;  flex-direction:column;
+    justify-content:center; align-items:center; margin:10px;">
+            <div>Core Link: @Model.lnk</div>
+            <div>Description: @Model.desc</div>
+        </div>
+        <div style="border: green solid; margin:10px;">
+            <div>Structure</div>
+            <div class="bx"> @Html.Partial("findcluster", Model.pgfind)  </div>
+            <div class="bx"> @Html.Partial("findcluster", Model.segfind)  </div>
+            <div class="bx"> @Html.Partial("findcluster", Model.checkfnd)  </div>
+            <div class="bx"> @Html.Partial("findcluster", Model.navfind)  </div>
+        </div>
+        <div id="flds" style="border: red solid; margin:10px;">
+            <div>Fields</div>
+            @foreach (onefindcluster a in Model.allflds)
+            {
+                <div class="bx"> @Html.Partial("findcluster", a)  </div>
+            }
+
+        </div>
+        <input type="hidden" id="coreid" value="@Model.coreid" />
+    </div>
+    <div id="rightdiv">
+        <div id="cntarea">
+            <label>Link</label>
+            <input type="text" id="lnk" value="https://www.indeed.com/jobs?q=software+developer&l=Springfield%2C+MA" />
+            <button onclick="loadpage()">Load Link</button>
+            <button onclick="showenter()">Enter Text</button>
+        </div>
+        <div id="pagearea">
+        <div id="showtext" style="max-width:500px; min-height:500px; max-height:800px;
+            word-wrap:break-word; background-color:lightblue; overflow:scroll;"> </div>        
+        </div>
+        <textarea id="entertext" style="display:none; min-width:500px; min-height:500px;"></textarea>
+    </div>
+</div>
+
+<script>
+    function showenter() {
+        $("#entertext").css("display", "block");
+        $("#showtext").css("display", "none");
+        
+    }
+    function loadpage() {
+        var lnk = $("#lnk").val();
+        var coreid = $("#coreid").val();
+        //var a = getstringfromajax(lnk);
+        //alert(a);
+        //alert("test")
+        /*
+        var s = "/Home/managelistmultiselect?itemlist=" + itemlist + "&listid=" + listid +
+            "&iscart=" + iscart + "&processtype=" + processtype + "&t=" + k;
+        var txtres = getstringfromajax(s);
+        */
+
+
+
+        
+        var s = "/Home/getlnkstring?lnk=" + lnk + "&coreid=" + coreid;
+        var a = getstringfromajax(s);
+        
+
+        var b = "";
+
+        //var b = a.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+        //alert(b);
+        //b = "<div style='background-color:blue'>testing</div><td id=\"resultsCol\">myfillerid1endfilleridTopSpace\"></div>";
+
+        //b = b.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+
+        //b = b + "<div style='background-color:blue'>" + b + "</div>" + b;
+
+        $("#showtext").html(a);
+        $("#entertext").css("display", "none");
+        $("#showtext").css("display", "block");
+
+    }
+
+</script>

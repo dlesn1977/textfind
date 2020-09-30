@@ -1,0 +1,45 @@
+﻿@model textfind.Models.onefind
+
+
+<style>
+    .rw {
+        display: flex;
+        flex-direction:row;
+        margin:5px;
+        background-color:aqua;
+        align-items:flex-start;
+    }
+    .txt{
+        min-width:120px;
+    }
+</style>
+<div style="display:flex;  flex-direction:row; justify-content:flex-start; border:solid yellow; align-items:flex-start; margin:10px;">
+    <div style="display:flex; flex-direction:column;">
+        @foreach (KeyValuePair<string, int> a in Model.frs)
+        {
+            <div class="rw">
+                <input type="text" class="txt" value="@a.Key">
+                <button onclick="updatevalue()">Store</button>
+                <button onclick="updatevalue()">Delete</button>
+            </div>
+        }
+    </div>
+    <div style="display:flex; flex-direction:column;">
+        @foreach (KeyValuePair<string, int> a in Model.lst)
+        {
+            <div class="rw">
+                <input type="text"  class="txt"  value="@a.Key">
+                <button onclick="updatevalue()">Store</button>
+                <button onclick="updatevalue()">Delete</button>
+            </div>
+        }
+    </div>
+</div>
+
+
+<script>
+    function updatevalue(idin, text) {
+
+    }
+
+</script>

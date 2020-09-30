@@ -1,0 +1,90 @@
+﻿@model textfind.Models.JobClass
+@using textfind.Models;
+@{
+
+}
+<style>
+    .row {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        margin: 5px;
+    }
+    .dt{
+        margin:5px;
+    }
+</style>
+<h2>Browse Jobs</h2>
+
+<div style="display:flex;  flex-direction:column; justify-content:center; align-items:center; margin:10px;">
+    @foreach(onejob a in Model.jbs)
+    {
+    <div id="mainrow" style="margin:5px; display:flex; flex-direction:column; border:solid thin blue; ">
+        <div id="toprow" class="row" style="justify-content:flex-start;">
+            <div class="dt"><span>Id: <b>@a.id</b></span> </div>
+            <div class="dt"><span>Company: <b>@a.company</b></span></div>
+            <div class="dt"><span>Title: <b>@a.title</b></span></div>
+
+            <div class="dt"><span>Location: <b>@a.location</b></span></div>
+            <div class="dt"><span>Distance: <b>@a.distance</b></span></div>
+
+            <div class="dt"><span>Date Posted:<b>@a.dateposted</b></span></div>
+
+
+            <div style="display:flex; flex-direction:row; margin-left: 30px;">
+                <button style="margin-right:10px;" onclick="openjob('@a.lnk')">Open Job</button>
+                <button onclick="updateapply('@a.id', 1)">Set Applied</button>
+                <button onclick="updateapply('@a.id', 2)">Dismiss</button>
+                <button onclick="updateapply('@a.id', 3)">Hide</button>
+            </div>
+
+        </div>
+        <div id="botrow" class="row">
+            <div style="width:80%">
+                <div class="dt">@Html.Raw(a.ds)</div>
+            </div>
+            <div>
+                @if (a.skils.Count > 0)
+                {
+                <div>
+                    @foreach (KeyValuePair<string, int> b in a.skils)
+                    {
+                        string cl = "red";
+
+                        if (b.Value == 1)
+                        {
+                            cl = "green";
+                        }
+                        <div style="color:@cl; margin:5px; font-weight:800;">@b.Key</div>
+
+                    }
+                </div>
+                    
+                }
+            </div>
+            
+        </div>
+
+    </div>
+        
+        
+    }
+    
+</div>
+<form action="~/Home/updatejob" id="frmonecore">
+    <input type="hidden" id="jobid" name="jobid" />
+    <input type="hidden" id="kind" name="kind" />
+</form>
+
+<script>
+    function updateapply(jobid, kind) {
+        $("#jobid").val(jobid)
+        $("#kind").val(kind)
+        $('#frmonecore').submit();
+    }
+    function openjob(lnk) {
+        window.open(lnk)
+    }
+
+    
+</script>

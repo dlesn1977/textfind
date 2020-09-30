@@ -1,0 +1,36 @@
+﻿@model textfind.Models.onefind
+
+
+<h2>Main Screen</h2>
+
+
+<link rel="stylesheet" type="text/css" media="all" href="../styles/tablesorter/blue/styles.css">
+
+
+<script src="../Scripts/jquery.unobtrusive-ajax.min.js"></script>
+
+
+
+
+
+
+<link rel='stylesheet' href=@Html.Raw("/Styles/Alvin.css") type='text/css'>
+<div style="display:flex;  flex-direction:row; justify-content:center; align-items:center; margin:10px;">
+    <form action="~/home/startdownload">
+        <input type="submit" value="Start Download" />
+    </form>
+
+</div>
+
+
+<script>
+    function getitembq(item) {
+        var s = "/Home/startdownload";
+        var txtres = getstringfromajax(s);
+        return txtres;
+        if (txtres == '1') {
+            alert("Download is competed");
+        }
+    }
+
+</script>

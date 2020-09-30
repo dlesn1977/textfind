@@ -1,0 +1,44 @@
+﻿@model textfind.Models.CoreList
+@using textfind.Models;
+@{
+
+}
+
+<h2>Main Screen</h2>
+
+<div>
+    <form action="~/Home/opendownload">
+        <input type="submit" value="Open Download" />
+    </form>
+
+    <form action="~/Home/testjavascript">
+        <input type="submit" value="testjava" />
+    </form>
+
+
+    <form action="~/Home/startbrowsejobs">
+        <input type="submit" value="Browse Jobs" />
+    </form>
+</div>
+<div style="display:flex;  flex-direction:row; justify-content:center; align-items:center; margin:10px;">
+    @foreach(coreprocess a in Model.prs)
+    {
+        <div style="display:flex; flex-direction:row; justify-content:center; margin:5px;">
+            <div>@(a.desc  + " - " + a.lnk)</div>
+            <button onclick="getonecore('@a.coreid')">Edit</button>
+        </div>
+    }
+    
+</div>
+<form action="~/Home/editonecore" id="frmonecore">
+    <input type="hidden" id="coreid" name="coreid" />
+</form>
+
+<script>
+    function getonecore(coreid) {
+        $("#coreid").val(coreid)
+        $('#frmonecore').submit();
+    }
+
+    
+</script>
