@@ -37,7 +37,7 @@ namespace textfind.Models
 
 
         public Dictionary<int, KeyValuePair<string, int>> corestruct = new Dictionary<int,KeyValuePair<string,int>>();
-        public string pagetxt = @"test chage at local new changed  branch server start pg 
+        public string pagetxt = @"test chage at local new changed again  branch server start pg 
                                         onefirst test extra  
                                             twofirst 
                                                 titlefirst
